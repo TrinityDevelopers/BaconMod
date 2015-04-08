@@ -258,7 +258,7 @@ public:
 	virtual void getSecondPart(TileSource&, TilePos const&, TilePos&); // 30
 	virtual void onGraphicsModeChanged(bool, bool); // 31
 	virtual void getResource(int, Random*); // 32
-	virtual void getResourceCount(Random*); // 33
+	virtual int getResourceCount(Random*); // 33
 	virtual void getDestroyProgress(Player*); // 34
 	virtual void spawnResources(TileSource*, int, int, int, int, float); // 35
 	virtual void spawnBurnResources(TileSource*, float, float, float); // 36

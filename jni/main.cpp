@@ -8,6 +8,7 @@
 #include <memory>
 #include <lw.h>
 #include <BeaconTile.h>
+#include <netherStar.h>
 bool reg=false;
 bool itemsAdded=false;
 
@@ -37,9 +38,15 @@ static void addShapedRecipe(int id, int count, int damage, std::string line1, st
 }
 
 static void Minecraft_selectLevel_hook(Level* level, Minecraft* mc, std::string const& str1, std::string const& str2, LevelSettings const& settings) {
+	NetherStar* netherStar = new NetherStar(NETHER_STAR_ID - 0x100, "Nether Star", 64);
+	Item::items[NETHER_STAR_ID] = netherStar;
 	if(!reg) {
 		reg=true;
 		(*I18n_strings)["tile.Beacon Tile.name"]="Beacon";
+		(*I18n_strings)["item.Nether Star.name"]="Nether Star";
+		char btChars[]={'g', 's', 'o'};
+	    int btIngs[]={20, NETHER_STAR_ID, 49};
+		addShapedRecipe(BEACON_TILE_ID, 1, 0, "ggg", "gsg", "ooo", 3, btChars, btIngs);
 	}
 	Minecraft_selectLevel_real(level, mc, str1, str2, settings);
 }
@@ -57,6 +64,7 @@ static void Gui_render_hook(Gui* gui, float f1, bool b1, int i1, int i2) {
 static void CreativeInventoryScreen_populateItem_hook(Item* item, int count, int damage) {
 	if(!itemsAdded) {
 		CreativeInventoryScreen_populateItem_real(Item::items[BEACON_TILE_ID], 1, 0);
+		CreativeInventoryScreen_populateItem_real(Item::items[NETHER_STAR_ID], 1, 0);
 		itemsAdded=true;
 	}
 	CreativeInventoryScreen_populateItem_real(item, count, damage);
