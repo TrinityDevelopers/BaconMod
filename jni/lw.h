@@ -195,7 +195,7 @@ public:
 public:
 	// Size : 140
 	//void **vtable;		// 0
-	char filler1[52];					//4
+	char filler1[56];					//4
 	bool _replaceable;					//56
 	AABB shape;							//60
 	TextureUVCoordinateSet tex;			//64
